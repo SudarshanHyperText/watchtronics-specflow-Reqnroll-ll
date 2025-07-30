@@ -12,35 +12,36 @@ using Watch_Tronics.Utilities; // DriverManager namespace
 namespace Watch_Tronics.Steps
 {
     [Binding]
-    public class ProductSteps
+    public class HomeSteps
     {
-        private readonly ProductPage ProductPage;
+        private readonly HomePage HomePage;
 
-        public ProductSteps()
+        public HomeSteps()
         {
-            ProductPage = new ProductPage(DriverManager.Driver); // pass WebDriver
+            HomePage = new HomePage(DriverManager.Driver); // pass WebDriver
         }
 
         [Given("user is on login page")]
         public void GivenUserIsOnLoginPage()
         {
-            ProductPage.VerifyHomePageHeading();
+            HomePage.VerifyHomePageHeading();
             TestContext.WriteLine("User is on login page");
         }
 
         [When("user clicks on shop now button")]
         public void WhenUserClicksOnShopNowButton()
         {
-            ProductPage.ClickShopNow();
+            HomePage.ClickShopNow();
         }
 
         [Then("product page should be visible")]
         public void ThenProductPageShouldBeVisible()
         {
-            ProductPage.VerifyProductPageTitle();
+            HomePage.VerifyProductPageTitle();
             TestContext.WriteLine("User landed on product page");
         }
 
+       
 
     }
 }

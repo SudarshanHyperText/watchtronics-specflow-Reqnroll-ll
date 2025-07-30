@@ -1,15 +1,14 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-    namespace Watch_Tronics.PageObjects
-    {
-    public class ProductPage
+namespace Watch_Tronics.PageObjects
+{
+    internal class ProductPage
     {
         private readonly IWebDriver _driver;
         private WebDriverWait _wait;
@@ -19,29 +18,19 @@ using System;
             _driver = driver;
             _wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(5));
         }
+        private IWebElement SearchInput => _wait.Until(d => d.FindElement(By.XPath("//form[@class='searchbox']//input")));
+        private IReadOnlyCollection<IWebElement> productElements => _wait.Until(d => d.FindElements(By.XPath("//div[@class='data']//p[@style='color: grey;']//b")));
 
-        private IWebElement Heading => _wait.Until(d => d.FindElement(By.XPath("//div[@class='center']//h1")));
-        private IWebElement ShopNowButton => _wait.Until(d => d.FindElement(By.XPath("//button[text()='Shop now']")));
-        private IWebElement ProductTitle => _wait.Until(d => d.FindElement(By.XPath("//div[@class='section-center']//h2")));
-
-        public void VerifyHomePageHeading()
+        public void EnterSearchTerm(string keyword)
         {
-            string expected = "WatchTronics";
-            string actual = Heading.Text;
-            Assert.AreEqual(expected, actual, "Homepage heading did not match");
+            SearchInput.Clear();
+            SearchInput.SendKeys(keyword);
+            Thread.Sleep(1000);
         }
 
-        public void ClickShopNow()
+        public List<string> GetVisibleProductNames()
         {
-            ShopNowButton.Click();
-        }
-
-        public void VerifyProductPageTitle()
-        {
-            string expected = "Home/ products";
-            string actual = ProductTitle.Text;
-            Assert.AreEqual(expected, actual, "Product page title did not match");
+            return productElements.Select(el => el.Text.Trim().ToLower()).ToList();
         }
     }
-
 }

@@ -26,10 +26,6 @@
 		<!-- SpecFlow Packages - YE IMPORTANT HAIN -->
 	</ItemGroup>
 
-	<ItemGroup>
-		<Folder Include="Features\" />
-	</ItemGroup>
-
 	<!-- Feature Files Configuration -->
 	<ItemGroup>
 		<None Update="Features\**\*.feature">

@@ -1,4 +1,4 @@
-﻿Feature: Products
+﻿Feature: Home
 
 A short summary of the feature
 
