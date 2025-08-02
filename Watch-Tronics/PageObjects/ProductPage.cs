@@ -8,29 +8,26 @@ using System.Threading.Tasks;
 
 namespace Watch_Tronics.PageObjects
 {
-    internal class ProductPage
+    internal class ProductPage : BasePage
     {
-        private readonly IWebDriver _driver;
-        private WebDriverWait _wait;
-
-        public ProductPage(IWebDriver driver)
+        public ProductPage(IWebDriver driver) : base(driver)
         {
-            _driver = driver;
-            _wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(5));
         }
-        private IWebElement SearchInput => _wait.Until(d => d.FindElement(By.XPath("//form[@class='searchbox']//input")));
-        private IReadOnlyCollection<IWebElement> productElements => _wait.Until(d => d.FindElements(By.XPath("//div[@class='data']//p[@style='color: grey;']//b")));
+
+        private readonly By SearchInput = By.XPath("//form[@class='searchbox']//input");
+        private readonly By productElements = By.XPath("//div[@class='data']//p[@style='color: grey;']//b");
 
         public void EnterSearchTerm(string keyword)
         {
-            SearchInput.Clear();
-            SearchInput.SendKeys(keyword);
+            _driver.FindElement(SearchInput).Clear();
+            _driver.FindElement(SearchInput).SendKeys(keyword);
             Thread.Sleep(1000);
         }
 
         public List<string> GetVisibleProductNames()
         {
-            return productElements.Select(el => el.Text.Trim().ToLower()).ToList();
+            var elements = _driver.FindElements(productElements);
+            return elements.Select(el => el.Text.Trim().ToLower()).ToList();
         }
     }
 }

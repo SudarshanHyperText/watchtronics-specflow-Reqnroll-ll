@@ -1,47 +1,35 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
-using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
+﻿using OpenQA.Selenium;
+using NUnit.Framework;
 
-    namespace Watch_Tronics.PageObjects
+namespace Watch_Tronics.PageObjects
+{
+    public class HomePage : BasePage
     {
-    public class HomePage
-    {
-        private readonly IWebDriver _driver;
-        private WebDriverWait _wait;
+        private readonly By headingLocator = By.XPath("//div[@class='center']//h1");
+        private readonly By shopNowBtnLocator = By.XPath("//button[text()='Shop now']");
+        private readonly By productTitleLocator = By.XPath("//div[@class='section-center']//h2");
 
-        public HomePage(IWebDriver driver)
+        public HomePage(IWebDriver driver) : base(driver)
         {
-            _driver = driver;
-            _wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(5));
         }
-
-        private IWebElement Heading => _wait.Until(d => d.FindElement(By.XPath("//div[@class='center']//h1")));
-        private IWebElement ShopNowButton => _wait.Until(d => d.FindElement(By.XPath("//button[text()='Shop now']")));
-        private IWebElement ProductTitle => _wait.Until(d => d.FindElement(By.XPath("//div[@class='section-center']//h2")));
 
         public void VerifyHomePageHeading()
         {
             string expected = "WatchTronics";
-            string actual = Heading.Text;
+            string actual = GetElementText(headingLocator);
             Assert.AreEqual(expected, actual, "Homepage heading did not match");
         }
 
         public void ClickShopNow()
         {
-            ShopNowButton.Click();
+            ClickElement(shopNowBtnLocator);
         }
 
         public void VerifyProductPageTitle()
         {
             string expected = "Home/ products";
-            string actual = ProductTitle.Text;
+            string actual = GetElementText(productTitleLocator);
             Assert.AreEqual(expected, actual, "Product page title did not match");
         }
     }
-
 }
