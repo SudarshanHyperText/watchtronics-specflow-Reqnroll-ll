@@ -105,11 +105,21 @@ namespace Watch_Tronics.Features
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("verify products get filter by text which user inputs in search bar_Fastrack")]
         [NUnit.Framework.CategoryAttribute("tag1")]
-        public async global::System.Threading.Tasks.Task VerifyProductsGetFilterByTextWhichUserInputsInSearchBar_Fastrack()
+        [NUnit.Framework.TestCaseAttribute("fastrack", null)]
+        [NUnit.Framework.TestCaseAttribute("sports", null)]
+        [NUnit.Framework.TestCaseAttribute("boat", null)]
+        [NUnit.Framework.TestCaseAttribute("titan", null)]
+        public async global::System.Threading.Tasks.Task VerifyProductsGetFilterByTextWhichUserInputsInSearchBar_Fastrack(string searchkey, string[] exampleTags)
         {
-            string[] tagsOfScenario = new string[] {
+            string[] @__tags = new string[] {
                     "tag1"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("searchkey", searchkey);
             global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("verify products get filter by text which user inputs in search bar_Fastrack", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
@@ -128,115 +138,10 @@ this.ScenarioInitialize(scenarioInfo);
  await testRunner.WhenAsync("user clicks on shop now button", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
 #line 9
- await testRunner.AndAsync("user types \"fastrack\" in the search box", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+ await testRunner.AndAsync(string.Format("user types {0} in the search box", searchkey), ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
 #line 10
- await testRunner.ThenAsync("all visible products should contain \"Fastrack\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
-#line hidden
-            }
-            await this.ScenarioCleanupAsync();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("verify products get filter by text which user inputs in search bar_Sports")]
-        [NUnit.Framework.CategoryAttribute("tag2")]
-        public async global::System.Threading.Tasks.Task VerifyProductsGetFilterByTextWhichUserInputsInSearchBar_Sports()
-        {
-            string[] tagsOfScenario = new string[] {
-                    "tag2"};
-            global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("verify products get filter by text which user inputs in search bar_Sports", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 13
-this.ScenarioInitialize(scenarioInfo);
-#line hidden
-            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                await this.ScenarioStartAsync();
-#line 14
- await testRunner.GivenAsync("user is on login page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
-#line hidden
-#line 15
- await testRunner.WhenAsync("user clicks on shop now button", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
-#line hidden
-#line 16
- await testRunner.AndAsync("user types \"sports\" in the search box", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
-#line hidden
-#line 17
- await testRunner.ThenAsync("all visible products should contain \"Sports\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
-#line hidden
-            }
-            await this.ScenarioCleanupAsync();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("verify products get filter by text which user inputs in search bar_boAt")]
-        [NUnit.Framework.CategoryAttribute("tag3")]
-        public async global::System.Threading.Tasks.Task VerifyProductsGetFilterByTextWhichUserInputsInSearchBar_BoAt()
-        {
-            string[] tagsOfScenario = new string[] {
-                    "tag3"};
-            global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("verify products get filter by text which user inputs in search bar_boAt", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 20
-this.ScenarioInitialize(scenarioInfo);
-#line hidden
-            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                await this.ScenarioStartAsync();
-#line 21
- await testRunner.GivenAsync("user is on login page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
-#line hidden
-#line 22
- await testRunner.WhenAsync("user clicks on shop now button", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
-#line hidden
-#line 23
- await testRunner.AndAsync("user types \"boat\" in the search box", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
-#line hidden
-#line 24
- await testRunner.ThenAsync("all visible products should contain \"boAt\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
-#line hidden
-            }
-            await this.ScenarioCleanupAsync();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("verify products get filter by text which user inputs in search bar_Titan")]
-        [NUnit.Framework.CategoryAttribute("tag4")]
-        public async global::System.Threading.Tasks.Task VerifyProductsGetFilterByTextWhichUserInputsInSearchBar_Titan()
-        {
-            string[] tagsOfScenario = new string[] {
-                    "tag4"};
-            global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("verify products get filter by text which user inputs in search bar_Titan", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 27
-this.ScenarioInitialize(scenarioInfo);
-#line hidden
-            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                await this.ScenarioStartAsync();
-#line 28
- await testRunner.GivenAsync("user is on login page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
-#line hidden
-#line 29
- await testRunner.WhenAsync("user clicks on shop now button", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
-#line hidden
-#line 30
- await testRunner.AndAsync("user types \"titan\" in the search box", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
-#line hidden
-#line 31
- await testRunner.ThenAsync("all visible products should contain \"Titan\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+ await testRunner.ThenAsync(string.Format("all visible products should contain {0}", searchkey), ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();

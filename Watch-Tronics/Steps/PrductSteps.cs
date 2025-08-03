@@ -1,46 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NUnit.Framework;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using Reqnroll;
+using System;
+using System.Linq;
 using Watch_Tronics.PageObjects;
-using Watch_Tronics.Utilities; // DriverManager namespace
+using Watch_Tronics.Utilities;
 
 namespace Watch_Tronics.Steps
 {
     [Binding]
-
-    public class PrductSteps
+    public class ProductSteps
     {
         private readonly ProductPage ProductPage;
-        public PrductSteps()
+
+        public ProductSteps()
         {
-            ProductPage = new ProductPage(DriverManager.Driver); // pass WebDriver
+            ProductPage = new ProductPage(DriverManager.Driver);
         }
 
-        [When(@"user types ""(.*)"" in the search box")]
+        [When(@"user types (.*) in the search box")]
         public void WhenUserTypesInTheSearchBox(string keyword)
         {
             ProductPage.EnterSearchTerm(keyword);
         }
 
-        [Then(@"all visible products should contain ""(.*)""")]
+        [Then(@"all visible products should contain (.*)")]
         public void ThenAllVisibleProductsShouldContain(string keyword)
         {
             var products = ProductPage.GetVisibleProductNames();
 
-            foreach (var name in products)
+            foreach (var product in products)
             {
-                if (!name.Contains(keyword.ToLower()))
-                {
-                    throw new Exception($"Product name '{name}' does not contain '{keyword}'");
-                }
+                Assert.IsTrue(product.ToLower().Contains(keyword.ToLower()),
+                    $"Product '{product}' does not contain keyword '{keyword}'");
             }
-
-            Console.WriteLine("All product names matched the search keyword.");
         }
-
     }
 }
